@@ -1,0 +1,22 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>ABOUT ME</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  
+  <ion-list>
+    <ion-item-divider>
+      <ion-label> Hobbies </ion-label>
+    </ion-item-divider>
+
+    <ion-item *ngFor="let hobbie of hobbies">
+      <ion-label> {{hobbie.title}} </ion-label> 
+      <ion-avatar slot="start">
+        <ion-img [src]="hobbie.imageUrl" ></ion-img>
+      </ion-avatar>
+    </ion-item>
+  </ion-list>
+
+</ion-content>

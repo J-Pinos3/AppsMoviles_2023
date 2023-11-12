@@ -1,1 +1,1 @@
-# Bienvenido al repositorio de **Aplicaciones Móviles 2023**
+# CV mobile application made with ionic and angular
