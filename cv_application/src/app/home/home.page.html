@@ -1,20 +1,56 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
+<ion-menu contentId="main-content">
+  <ion-header>
     <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
+      <ion-title>Menu Content</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content class="ion-padding">
+    <ion-item [routerLink]="'/about'"> About Me. </ion-item>
+    <ion-item [routerLink]="'/projects'"> Projects. </ion-item>
+    <ion-item [routerLink]="'/about'"> Experience. </ion-item>
+    <ion-item [routerLink]="'/about'"> Contact. </ion-item>
+  </ion-content>
+</ion-menu>
+
+<div class="ion-page" id="main-content">
+  <ion-header>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+      <ion-title >José Pinos</ion-title>
     </ion-toolbar>
   </ion-header>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
-</ion-content>
+  
+  <ion-content>
+    <p style="text-align: center; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; font-size: 25px;">Welcome to my CV.</p>
+    <div class="contenedor_imagen" style="display: flex; flex-direction: column; align-items: center; margin-top: 30px;">
+      <ion-img src="assets/images/Yo.png" style="width: 150px; height: 150px; margin-bottom: 10px;"></ion-img>
+    </div>
+    <p style="text-align: center; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; font-size: 20px; margin-bottom: 45px;">Greetings, I'm an Ecuadorian student of Software Development and Music</p>
+
+    <div class="info">
+      <ion-grid>
+        <ion-row style="align-items: center;">
+          <ion-col> <ion-icon name="calendar-number-outline"></ion-icon> 01/12/2001</ion-col>
+          <ion-col> <ion-icon name="call-outline"></ion-icon> 0962151117</ion-col>
+        </ion-row>
+      </ion-grid>
+
+      <ion-grid>
+        <ion-row style="align-items: center;">
+          <ion-col> <ion-icon name="home-outline"></ion-icon> Quito - Ecuador</ion-col>
+          <ion-col> <ion-icon name="mail-outline"></ion-icon> Reverb1@outlook.es</ion-col>
+        </ion-row>
+      </ion-grid>
+
+    </div>
+
+  </ion-content>
+  
+  
+</div>
+
+

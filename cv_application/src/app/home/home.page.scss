@@ -25,3 +25,18 @@
 #container a {
   text-decoration: none;
 }
+
+.info {
+  position: relative;
+}
+
+.info::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 47%;
+  transform: translateX(-50%);
+  width: 3px; /* Ancho de la franja */
+  background-color: #ffcc00; /* Color de la franja */
+}
