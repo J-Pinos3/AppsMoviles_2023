@@ -1,1 +1,1 @@
-# CV mobile application made with ionic and angular
+# CV chat mobile application made with ionic and angular
