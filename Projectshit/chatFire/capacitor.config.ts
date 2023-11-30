@@ -2,7 +2,7 @@ import { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
   appId: 'io.ionic.starter',
-  appName: 'devdacticFire',
+  appName: 'chatFire',
   webDir: 'www',
   server: {
     androidScheme: 'https'
