@@ -1,0 +1,52 @@
+<ion-header >
+  <ion-toolbar>
+    <ion-title>
+      Mi Ubicación
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="ion-padding">
+    <ion-button (click)="getCurrentCoordinates()" expand="block">
+      Obtener Ubicación 
+    </ion-button>
+
+    <form [formGroup]="form">
+      <ion-item>
+        <ion-label>Latitud: </ion-label>
+        <ion-input placeholder="Ingrese la Latitud" formControlName="latitud"></ion-input>
+      </ion-item>
+    
+      <ion-item>
+        <ion-label>Longitud: </ion-label>
+        <ion-input placeholder="Ingrese la Longitud" formControlName="longitud"></ion-input>
+      </ion-item>
+    </form>
+
+
+    <br><br>
+    <ion-list>
+      <ion-list-header> Coordenadas de la Ubicación </ion-list-header>
+
+      <ion-item>
+        <ion-label>Latitud</ion-label>
+        <ion-badge color="danger" slot="end"> {{latitude}} </ion-badge>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Longitud</ion-label>
+        <ion-badge color="danger" slot="end"> {{longitude}} </ion-badge>
+      </ion-item>
+
+      <ion-item>
+        <a href="https://maps.google.com/?ll={{latitude}},{{longitude}}">asdas</a>
+      </ion-item>
+
+
+      <ion-item>
+        <a href="{{url}}">Visualizar Ubicación</a>
+      </ion-item>
+    </ion-list>
+  </div>
+</ion-content>

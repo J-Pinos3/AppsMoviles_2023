@@ -1,7 +1,0 @@
-{
-  "name": "authenticacion2023",
-  "integrations": {
-    "capacitor": {}
-  },
-  "type": "angular"
-}
