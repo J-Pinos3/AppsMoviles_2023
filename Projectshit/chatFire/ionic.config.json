@@ -1,7 +1,0 @@
-{
-  "name": "chatFire",
-  "integrations": {
-    "capacitor": {}
-  },
-  "type": "angular"
-}

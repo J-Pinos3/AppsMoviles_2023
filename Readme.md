@@ -1,1 +1,0 @@
-# CV chat mobile application made with ionic and angular

@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             NavigationPage.HasNavigationBar="False"
+             x:Class="MyFirstFormsApp.Vistas.Convertir">
+    
+    <!-- fila '*', fila '*', fila '*', fila '*' -->
+    <Grid BackgroundColor="#FDE0TF">
+        <StackLayout 
+            VerticalOptions="Center"
+            Margin="20">
+            
+            <Image
+                Margin="0,0,0,20"
+                Source="https://i.ibb.co/SvKJZRz/earth-icon.png"/>
+
+            <Frame
+                CornerRadius="20">
+                <Entry
+                    Keyboard="Numeric"
+                    Placeholder="Centímetros (cm)"
+                    PlaceholderColor="Green"
+                    FontSize="Large"
+                    TextColor="Black"
+                    x:Name="txtcm"/>
+            </Frame>
+
+            <Button
+                Text="Calcular"
+                CornerRadius="20"
+                FontSize="Large"
+                FontAttributes="Bold"
+                Margin="0,20,0,0"
+                TextTransform="None"
+                BackgroundColor="#7C50E9"
+                TextColor="White"
+                x:Name="btnCalcular"
+                Clicked="btnCalcular_Clicked"/>
+            
+            <StackLayout
+                Orientation="Horizontal"
+                Margin="0,20,0,0">
+                <Label
+                    Text="Resultado: "
+                    TextColor="Black"
+                    FontSize="23"
+                    FontAttributes="Bold"/>
+                <Label
+                    Text="--"
+                    x:Name="lblResultado"
+                    TextColor="Black"
+                    FontAttributes="Bold"
+                    FontSize="23"/>
+            </StackLayout>
+
+            <Button
+                Text="Atrás"
+                CornerRadius="11"
+                FontSize="Large"
+                FontAttributes="Bold"
+                Margin="0,15,0,0"
+                TextTransform="None"
+                BackgroundColor="LightGray"
+                TextColor="Black"
+                HorizontalOptions="Center"
+                x:Name="btnVolver"
+                Clicked="btnVolver_Clicked"
+                />
+
+        </StackLayout>
+    </Grid>
+</ContentPage>
