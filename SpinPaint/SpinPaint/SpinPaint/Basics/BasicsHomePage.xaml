@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SpinPaint.Basics.BasicsHomePage">
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="Welcome to Xamarin.Forms!"
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" />
+
+            <Button
+                Text="Outlined Text"
+                BackgroundColor="CadetBlue"
+                x:Name="btnOutlinedText"
+                Clicked="btnOutlinedText_Clicked"
+                />
+
+            <Button
+                Text="Pulsating Ellipse"
+                BackgroundColor="CadetBlue"
+                x:Name="btnPulsatingEllipse"
+                Clicked="btnPulsatingEllipse_Clicked"/>
+
+            <Button
+                Text="Simple Circle"
+                BackgroundColor="CadetBlue"
+                x:Name="btnSimpleCircle"
+                Clicked="btnSimpleCircle_Clicked"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

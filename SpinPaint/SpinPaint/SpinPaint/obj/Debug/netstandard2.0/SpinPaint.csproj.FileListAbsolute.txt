@@ -12,3 +12,5 @@ C:\Users\Usuario\Desktop\Apps_Moviles\SpinPaint\SpinPaint\SpinPaint\obj\Debug\ne
 C:\Users\Usuario\Desktop\Apps_Moviles\SpinPaint\SpinPaint\SpinPaint\obj\Debug\netstandard2.0\XamlC.stamp
 C:\Users\Usuario\Desktop\Apps_Moviles\SpinPaint\SpinPaint\SpinPaint\obj\Debug\netstandard2.0\SpinPaint.dll
 C:\Users\Usuario\Desktop\Apps_Moviles\SpinPaint\SpinPaint\SpinPaint\obj\Debug\netstandard2.0\SpinPaint.pdb
+C:\Users\Usuario\Desktop\Apps_Moviles\SpinPaint\SpinPaint\SpinPaint\obj\Debug\netstandard2.0\Basics\BasicsHomePage.xaml.g.cs
+C:\Users\Usuario\Desktop\Apps_Moviles\SpinPaint\SpinPaint\SpinPaint\obj\Debug\netstandard2.0\Basics\PulsatingEllipsePage.xaml.g.cs

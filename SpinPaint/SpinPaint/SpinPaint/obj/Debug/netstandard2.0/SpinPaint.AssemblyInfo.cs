@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SpinPaint")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d9c7d526773e7343eb3470ef160fcff3db12b5e8")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8c120238ce4f114d978de5465547331cc2aefb1e")]
 [assembly: System.Reflection.AssemblyProductAttribute("SpinPaint")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SpinPaint")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

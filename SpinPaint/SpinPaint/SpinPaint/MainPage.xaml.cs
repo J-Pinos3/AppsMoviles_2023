@@ -319,5 +319,10 @@ namespace SpinPaint
                 await DisplayAlert("SpinPaint", "Artwork could not be saved. Sorry!", "OK");
             }
         }
+
+        private void Button_Clicked(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new Basics.BasicsHomePage());
+        }
     }
 }

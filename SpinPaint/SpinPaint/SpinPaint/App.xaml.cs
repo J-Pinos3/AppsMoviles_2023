@@ -13,7 +13,7 @@ namespace SpinPaint
         {
             InitializeComponent();
 
-            MainPage = new SpinPaint.MainPage();
+            MainPage = new NavigationPage (new SpinPaint.MainPage());
         }
 
         protected override void OnStart()
