@@ -31,5 +31,10 @@ namespace SpinPaint.Basics
         {
             await Navigation.PushAsync(new OutlinedTextPage());
         }
+
+        private async void btnFingerPaint_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync( new FingerPaintingPage() );
+        }
     }
 }

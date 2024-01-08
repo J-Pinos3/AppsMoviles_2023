@@ -9,6 +9,12 @@
                 HorizontalOptions="CenterAndExpand" />
 
             <Button
+                Text="Finger Paint"
+                BackgroundColor="CadetBlue"
+                x:Name="btnFingerPaint"
+                Clicked="btnFingerPaint_Clicked"/>
+
+            <Button
                 Text="Outlined Text"
                 BackgroundColor="CadetBlue"
                 x:Name="btnOutlinedText"

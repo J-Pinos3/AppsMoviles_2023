@@ -69,7 +69,7 @@ namespace SpinPaint.Basics
 
             //adjust textsize property so text is 95% of screen
             float textWidth = textPaint.MeasureText(text);
-            textPaint.TextSize = 0.95f * info.Width * textPaint.TextSize / textWidth;
+            textPaint.TextSize = 0.7f * info.Width * textPaint.TextSize / textWidth;
 
             //text bounds
             SKRect textBounds = new SKRect();
@@ -77,7 +77,7 @@ namespace SpinPaint.Basics
 
             //offsets to center the text on the screen
             float xText = info.Width / 2 - textBounds.MidX;
-            float yText = info.Height /3 - textBounds.MidY;
+            float yText = info.Height  - textBounds.MidY /4;
 
             //paint
             canvas.DrawText(text, xText, yText, textPaint);
