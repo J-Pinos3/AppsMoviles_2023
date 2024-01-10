@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "9uGJdSTVrnestSbs5JloOoOveFWCSvU5pHZqcuvFzEVQWVuxX63FMB+x2lS9f+SPOQELsEQ1toMm5PlhYCyvog==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Usuario\\Desktop\\Apps_Moviles\\tutoAppNumeroTelefono\\tutoAppNumeroTelefono.iOS\\tutoAppNumeroTelefono.iOS.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Usuario\\.nuget\\packages\\system.numerics.vectors\\4.5.0\\system.numerics.vectors.4.5.0.nupkg.sha512",
+    "C:\\Users\\Usuario\\.nuget\\packages\\xamarin.essentials\\1.7.0\\xamarin.essentials.1.7.0.nupkg.sha512",
+    "C:\\Users\\Usuario\\.nuget\\packages\\xamarin.forms\\5.0.0.2196\\xamarin.forms.5.0.0.2196.nupkg.sha512"
+  ],
+  "logs": []
+}
