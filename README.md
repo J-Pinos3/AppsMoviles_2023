@@ -1,4 +1,4 @@
-## Integrantes José Pinos, David Basantes, Miguel Carapaz
+## Integrantes José Pinos
 ### Actividad: implementar la aplicación de la bolita con giroscopio y acalerómetro
 
 ### Guardar la posición de la misms en realtime database
