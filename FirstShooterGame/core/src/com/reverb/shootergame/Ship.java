@@ -2,6 +2,7 @@ package com.reverb.shootergame;
 
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.math.Rectangle;
 
 public abstract class Ship {
 
@@ -11,8 +12,7 @@ public abstract class Ship {
 
 
     //position
-    float xPosition, yPosition; //lower-left coerner
-    float width, height;
+    Rectangle boundingBox;
 
 
     //laser information
@@ -33,10 +33,10 @@ public abstract class Ship {
                 TextureRegion shipTexture, TextureRegion shieldTexture, TextureRegion laserTextureRegion) {
         this.movementSpeed = movementSpeed;
         this.shield = shield;
-        this.xPosition = xCenter - width/2;
-        this.yPosition = yCenter - height/2;
-        this.width = width;
-        this.height = height;
+
+        this.boundingBox = new Rectangle(xCenter - width/2, yCenter - height/2, width, height);
+
+
         this.laserWidth = laserWidth;
         this.laserHeight = laserHeight;
         this.timeBetweenShots = timeBetweenShots;
@@ -56,10 +56,26 @@ public abstract class Ship {
 
     public abstract Laser[] fireLasers();
 
-    public void draw(Batch batch){
-        batch.draw(shipTextureRegion, xPosition, yPosition, width, height);
+
+    public boolean intersects(Rectangle otherRectangle){
+        return boundingBox.overlaps(otherRectangle);
+    }
+
+
+    public void translate(float xChange, float yChange){
+        boundingBox.setPosition( boundingBox.x + xChange, boundingBox.y + yChange );
+    }
+
+    public void hit(Laser laser){
         if(shield > 0){
-            batch.draw(shieldTextureRegion, xPosition, yPosition, width, height);
+            shield--;
+        }
+    }
+
+    public void draw(Batch batch){
+        batch.draw(shipTextureRegion, boundingBox.x, boundingBox.y, boundingBox.width, boundingBox.height);
+        if(shield > 0){
+            batch.draw(shieldTextureRegion, boundingBox.x, boundingBox.y, boundingBox.width, boundingBox.height);
         }
     }
 }

@@ -1,6 +1,8 @@
 package com.reverb.shootergame;
 
 import com.badlogic.gdx.Game;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -8,6 +10,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
@@ -19,7 +22,7 @@ import java.util.ListIterator;
 
 class GameScreen implements Screen {
 
-//todo KEEP ALONG WITH VIDEO 4 11:20
+//todo KEEP ALONG WITH VIDEO 8
     //screen
     private Camera camera;
     private Viewport viewport;
@@ -43,6 +46,7 @@ class GameScreen implements Screen {
     //world parameters
     private final int WORLD_WIDTH = 72;
     private final int WORLD_HEIGHT = 128;
+    private final float TOUCH_MOVEMENT_THRESHOLD = 0.5f;
 
     //game objects
     private Ship  playerShip;
@@ -80,13 +84,13 @@ class GameScreen implements Screen {
 
         playerShip = new PlayerShip(WORLD_WIDTH/2, WORLD_HEIGHT/4,
                 10, 10,
-                2, 3,
+                45, 6,
                 0.4f, 4f, 45f, 0.5f,
                 playerShipTextureRegion, playerShieldTextureRegion, playerLaserTextureRegion);
 
         enemyShip = new EnemyShip(WORLD_WIDTH/2, WORLD_HEIGHT*3/4,
                 10, 10,
-                2, 3,
+                2, 5,
                 0.3f, 5f, 50f, 0.8f,
                 enemyShipTextureRegion, enemyShieldTextureRegion, enemyLaserTextureRegion);
 
@@ -108,6 +112,8 @@ class GameScreen implements Screen {
     public void render(float deltaTime) {
         batch.begin();
 
+        detectInput(deltaTime);
+
         playerShip.update(deltaTime);
         enemyShip.update(deltaTime);
 
@@ -121,8 +127,123 @@ class GameScreen implements Screen {
         playerShip.draw(batch);
 
         //lasers
+        renderLasers(deltaTime);
+
+
+        //detect collisions between lasers and ships
+        detectCollissions();
+
+        //explosions
+        renderExplosions(deltaTime);
+
+
+
+        batch.end();
+    }
+
+
+    private void detectInput(float deltaTime) {
+        //keyboard input
+
+
+        //determine max distance the ship can move, and check keys and move accordingly
+        float leftLimit, rightLimit, upLimit, downLimit;
+        leftLimit = -playerShip.boundingBox.x ;
+        downLimit = -playerShip.boundingBox.y;
+        rightLimit = WORLD_WIDTH -playerShip.boundingBox.x - playerShip.boundingBox.width;
+        upLimit = WORLD_HEIGHT/2 - playerShip.boundingBox.y - playerShip.boundingBox.height;
+
+        if( Gdx.input.isKeyPressed(Input.Keys.RIGHT) && rightLimit > 0 ){
+//            float xChange = playerShip.movementSpeed*deltaTime;
+//            xChange = Math.min(xChange, rightLimit);
+//            playerShip.translate(xChange, 0f);
+
+            playerShip.translate( Math.min(playerShip.movementSpeed*deltaTime, rightLimit ), 0f );
+        }
+
+
+        if( Gdx.input.isKeyPressed(Input.Keys.UP) && upLimit > 0 ){
+            playerShip.translate( 0f, Math.min(playerShip.movementSpeed*deltaTime, upLimit ) );
+        }
+
+
+        if( Gdx.input.isKeyPressed(Input.Keys.LEFT) && leftLimit < 0 ){
+            playerShip.translate(  Math.max( -playerShip.movementSpeed*deltaTime, leftLimit ), 0f );
+        }
+
+        if( Gdx.input.isKeyPressed(Input.Keys.DOWN) && downLimit < 0 ){
+            playerShip.translate( 0f,Math.max( -playerShip.movementSpeed*deltaTime, downLimit ) );
+        }
+        //touch input also mouse
+
+        if( Gdx.input.isTouched() ){
+            //get screen position of the touch
+            float xTouchPixels = Gdx.input.getX();
+            float yTouchPixels = Gdx.input.getY();
+
+            //convert to world position
+            Vector2 touchPoint = new Vector2(xTouchPixels, yTouchPixels);
+            touchPoint = viewport.unproject(touchPoint);
+
+            //calculate x and y differences
+            Vector2 playerShipCentre = new Vector2(playerShip.boundingBox.x + playerShip.boundingBox.width/2,
+                    playerShip.boundingBox.y + playerShip.boundingBox.height/2);
+
+            float touchDistance = touchPoint.dst(playerShipCentre);
+
+            if(touchDistance > TOUCH_MOVEMENT_THRESHOLD){
+                float xTouchDifference = touchPoint.x - playerShipCentre.x;
+                float yTouchDifference = touchPoint.y - playerShipCentre.y;
+
+
+                //scale to maximum speed of the ship
+                float xMove = xTouchDifference / touchDistance * playerShip.movementSpeed * deltaTime;
+                float yMove = yTouchDifference / touchDistance * playerShip.movementSpeed * deltaTime;
+
+                if(xMove > 0){ xMove = Math.min(xMove, rightLimit);
+                }else{xMove = Math.max(xMove, leftLimit);}
+
+                if(yMove > 0){yMove = Math.min(yMove, upLimit);
+                }else{yMove = Math.max(yMove, downLimit); }
+
+                playerShip.translate(xMove, yMove);
+            }
+
+        }
+    }
+
+    private void detectCollissions() {
+        //for each player laser, check whether it intersects an enemy ship
+        ListIterator<Laser> iterator = playerLaserList.listIterator();
+        while(iterator.hasNext()){
+            Laser laser = iterator.next();
+            if( enemyShip.intersects(laser.boundingBox) ){
+                //hit enemy ship
+                enemyShip.hit(laser);
+                iterator.remove();
+            }
+        }
+
+        //for enemy player laser, check whether it intersects a player ship
+        iterator = enemyLaserList.listIterator();
+        while(iterator.hasNext()){
+            Laser laser = iterator.next();
+            if( playerShip.intersects(laser.boundingBox) ){
+                //hit enemy ship
+                playerShip.hit(laser);
+                iterator.remove();
+            }
+        }
+    }
+
+    private void renderExplosions(float deltaTime) {
+
+    }
+
+
+    private void renderLasers(float deltaTime) {
         //create new lasers
-                //player lasers
+        //player lasers
         if(playerShip.canFireLaser() ){
             Laser[] lasers = playerShip.fireLasers();
             for(Laser laser : lasers){
@@ -130,7 +251,7 @@ class GameScreen implements Screen {
             }
         }
 
-                //enemy lasers
+        //enemy lasers
         if(enemyShip.canFireLaser()){
             Laser[] lasers = enemyShip.fireLasers();
             for(Laser laser : lasers){
@@ -144,8 +265,8 @@ class GameScreen implements Screen {
         while(iterator.hasNext()){
             Laser laser = iterator.next();
             laser.draw(batch);
-            laser.yPosition += laser.movementSpeed* deltaTime;
-            if(laser.yPosition > WORLD_HEIGHT){
+            laser.boundingBox.y += laser.movementSpeed* deltaTime;
+            if(laser.boundingBox.y > WORLD_HEIGHT){
                 iterator.remove();//remove last item
             }
         }
@@ -155,18 +276,13 @@ class GameScreen implements Screen {
         while(iterator.hasNext()){
             Laser laser = iterator.next();
             laser.draw(batch);
-            laser.yPosition -= laser.movementSpeed* deltaTime;
-            if(laser.yPosition + laser.height < 0){
+            laser.boundingBox.y -= laser.movementSpeed* deltaTime;
+            if(laser.boundingBox.y + laser.boundingBox.height < 0){
                 iterator.remove();//remove last item
             }
         }
-
-        //explosions
-
-
-
-        batch.end();
     }
+
 
     private void renderBackground(float deltaTime) {
 
