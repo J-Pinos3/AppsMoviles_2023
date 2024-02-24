@@ -66,10 +66,12 @@ public abstract class Ship {
         boundingBox.setPosition( boundingBox.x + xChange, boundingBox.y + yChange );
     }
 
-    public void hit(Laser laser){
+    public boolean hitAndCheckDestroyed(Laser laser){
         if(shield > 0){
             shield--;
+            return false;
         }
+        return true;
     }
 
     public void draw(Batch batch){
