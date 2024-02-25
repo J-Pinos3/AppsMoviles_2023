@@ -6,6 +6,8 @@
 - David Basantes
 - Miguel Carapaz
 
+## APK
+APK file can be found in /android/apkfile/
 
 ## Demo
 
