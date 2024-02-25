@@ -9,9 +9,9 @@ buildscript {
         google()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:8.1.2'
-        
+        classpath 'com.android.tools.build:gradle:8.1.1'
 
+        classpath 'com.google.gms:google-services:4.4.1'
     }
 }
 
@@ -55,7 +55,9 @@ project(":desktop") {
 project(":android") {
     apply plugin: "com.android.application"
 
+    apply plugin: 'com.google.gms.google-services'
     configurations { natives }
+
 
     dependencies {
         implementation project(":core")
@@ -71,7 +73,13 @@ project(":android") {
         natives "com.badlogicgames.gdx:gdx-freetype-platform:$gdxVersion:natives-arm64-v8a"
         natives "com.badlogicgames.gdx:gdx-freetype-platform:$gdxVersion:natives-x86"
         natives "com.badlogicgames.gdx:gdx-freetype-platform:$gdxVersion:natives-x86_64"
+
+        implementation "pl.mk5.gdx-fireapp:gdx-fireapp-android:3.2.0"
+        implementation 'com.google.firebase:firebase-database:20.3.0'
+        implementation platform('com.google.firebase:firebase-bom:32.7.2')
+
     }
+
 }
 
 project(":core") {
@@ -81,6 +89,8 @@ project(":core") {
     dependencies {
         api "com.badlogicgames.gdx:gdx:$gdxVersion"
         implementation "com.badlogicgames.gdx:gdx-freetype:$gdxVersion"
+        implementation 'com.google.firebase:firebase-database:20.3.0'
+        implementation "pl.mk5.gdx-fireapp:gdx-fireapp-core:3.2.0"
 
     }
 }

@@ -67,8 +67,13 @@ class GameScreen implements Screen {
     BitmapFont font;
     float hudVerticalMargin, hudLeftX, hudRightX, hudCenterX, hudRow1Y, hudRow2Y, hudSectionWidth;
 
+    //firebase
+    FireBaseInterface fbi;
+    CoreInterfaceClass cic;
 
-    GameScreen(){
+    GameScreen(FireBaseInterface _fbi){
+        fbi = _fbi;
+        cic = new CoreInterfaceClass();
         camera = new OrthographicCamera();
         viewport = new StretchViewport(WORLD_WIDTH, WORLD_HEIGHT, camera);
 
@@ -275,6 +280,7 @@ class GameScreen implements Screen {
                 if (yMove > 0) yMove = Math.min(yMove, upLimit);
                 else yMove = Math.max(yMove, downLimit);
 
+                fbi.sendPlayerPosition(xMove,yMove );
                 playerShip.translate(xMove, yMove);
             }
         }
@@ -296,6 +302,7 @@ class GameScreen implements Screen {
             if (acelMoveY > 0) acelMoveY = Math.min(acelMoveY, WORLD_HEIGHT / 2 - playerShip.boundingBox.y - playerShip.boundingBox.height);
             else acelMoveY = Math.max(acelMoveY, -playerShip.boundingBox.y);
 
+            fbi.sendPlayerPosition(acelMoveX,acelMoveY );
             playerShip.translate(acelMoveX, acelMoveY);
         }
 
@@ -362,8 +369,9 @@ class GameScreen implements Screen {
                     playerShip.shield = 6;
                     playerShip.lives --;
                     if( playerShip.lives == 0){
+
                         pause();
-                        MyTextInputListener listener = new MyTextInputListener();
+                        MyTextInputListener listener = new MyTextInputListener(fbi);
                         Gdx.input.getTextInput(listener,"Fin del Juego","Desea continuar?", "Desea continuar");
                         playerShip.shield = 6;
                         playerShip.lives = 3;

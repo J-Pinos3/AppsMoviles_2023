@@ -5,15 +5,25 @@ import com.badlogic.gdx.Game;
 
 import java.util.Random;
 
+import pl.mk5.gdx.fireapp.GdxFIRApp;
+
 public class SpaceShooterGame extends Game {
 
 	GameScreen gameScreen;
 	public static Random random = new Random();
+	FireBaseInterface fbic;
+	public SpaceShooterGame(FireBaseInterface FBIC){
+		fbic = FBIC;
+	}
 
 	@Override
 	public void create() {
-		gameScreen = new GameScreen();
+		GdxFIRApp.inst().configure();
+
+		gameScreen = new GameScreen( fbic );
 		setScreen(gameScreen);
+
+
 	}
 
 	@Override
