@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:text="Temperature (in degrees):"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minWidth="25px"
+        android:minHeight="25px"
+        android:layout_marginTop="20dp"
+        android:id="@+id/textView1"/>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/etTemperature"
+        android:hint=""
+        android:inputType="numberDecimal"/>
+    <Button
+        android:text="Convert to Celcius"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@id/btnCovertToCelcius"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="5dp"/>
+    <Button
+        android:text="Convert to Fahrenheit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnCovertToFahrenheit"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="5dp"/>
+    <TextView
+        android:text="0"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/tvResult" />
+
+
+
+</LinearLayout>
