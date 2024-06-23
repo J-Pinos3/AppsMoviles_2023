@@ -1,1 +1,1 @@
-# Bienvenido al repositorio de **Aplicaciones Móviles 2023**
+# Quite basic C# stuff
