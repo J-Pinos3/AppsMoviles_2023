@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="350dp"
+        android:layout_centerHorizontal="true"
+        android:scaleType="fitXY"
+        android:paddingTop="10dp"
+        android:src="@drawable/cute_cookie"
+        android:id="@+id/ibCookie"
+        android:contentDescription="description" />
+    <!--
+    android:background="@android:color/white"
+    -->
+    
+    <TextView
+        android:id="@+id/tvClickCounter"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="0 Clicks"
+        android:layout_below="@id/ibCookie"
+        android:layout_marginTop="30dp"
+        android:textSize="25sp"
+        android:textColor="@android:color/black"
+        android:textStyle="bold"
+        android:gravity="center"/>
+
+
+</RelativeLayout>
